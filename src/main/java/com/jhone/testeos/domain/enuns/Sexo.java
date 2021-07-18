@@ -1,0 +1,37 @@
+package com.jhone.testeos.domain.enuns;
+
+
+public enum Sexo {
+	MASCULINO(1,"MASCULINO"),FEMININO(2,"FEMININO");
+	
+	private Integer cod;
+	private String descricao;
+	
+	private Sexo(Integer cod, String descricao) {
+		this.cod = cod;
+		this.descricao = descricao;
+	}
+
+	public Integer getCod() {
+		return cod;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+	
+	public static Sexo toEnum(Integer cod) {
+
+		if (cod == null) {
+			return null;
+		}
+
+		for (Sexo x : Sexo.values()) {
+			if (cod.equals(x.getCod())) {
+				return x;
+			}
+		}
+
+		throw new IllegalArgumentException("Sexo inválido!" + cod);
+	}
+}
