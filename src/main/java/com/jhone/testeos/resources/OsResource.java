@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jhone.testeos.domain.Exame;
 import com.jhone.testeos.domain.Medico;
+import com.jhone.testeos.domain.OS;
 import com.jhone.testeos.domain.OsExame;
 import com.jhone.testeos.domain.Paciente;
 import com.jhone.testeos.domain.PostoColeta;
@@ -79,6 +80,12 @@ public class OsResource {
 	}
 	
 	@CrossOrigin("*")
+	@GetMapping(value = "/oslast")
+	public OS FindOsLastId(){
+		return service.FindOsLastId();
+	}
+	
+	@CrossOrigin("*")
 	@GetMapping(value = "/medico/{id}")
 	public Medico getMedicoById(@PathVariable (value = "id") Integer id){
 		return service.findMedicoById(id);
@@ -116,8 +123,27 @@ public class OsResource {
 	@CrossOrigin("*")
 	@PostMapping(value = "/osexame")
 	public OsExameDTO createosexame(@RequestBody OsExameDTO obj) {
+		System.out.println("resource exame.:"+obj.getExame());
 		obj = new OsExameDTO(service.createosexame(obj));
 		return obj;
+	}
+	
+	@CrossOrigin("*")
+	@PostMapping(value = "/osexame/upd")
+	public OsExameDTO updosexame(@RequestBody OsExameDTO obj) {
+		System.out.println("resource updosexame.:"+obj.getExame());
+		
+		obj = new OsExameDTO(service.updosexame(obj));
+		return obj;
+	}
+	
+	@CrossOrigin("*")
+	@PostMapping(value = "/osexame/dlt")
+	public void dltosexame(@RequestBody OsExameDTO obj) {
+		System.out.println("resource dltosexame.:"+obj.getExame());
+		
+		service.dltosexame(obj);
+		
 	}
 	
 	@CrossOrigin("*")

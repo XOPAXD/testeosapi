@@ -21,26 +21,26 @@ public class OsExame {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@ManyToOne
-	@JoinColumn(name = "os_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
-    private OS os;
+	//@ManyToOne
+	//@JoinColumn(name = "os_id")
+	//@OnDelete(action = OnDeleteAction.CASCADE)
+    //@JsonIgnore
+    private Integer os_id;
 	
 	
-	@OneToOne
-	@JoinColumn(name = "exame_id")
-	private Exame exame;
+	//qq@OneToOne
+	//@JoinColumn(name = "exame_id")
+	private Integer exame_id;
 	
 	public OsExame() {
 		super();
 	}
 
-	public OsExame(Integer id, OS os, Exame exame) {
+	public OsExame(Integer id, Integer os, Integer exame) {
 		super();
 		this.id = id;
-		this.os = os;
-		this.exame = exame;
+		this.os_id = os;
+		this.exame_id = exame;
 	}
 
 	public Integer getId() {
@@ -51,20 +51,20 @@ public class OsExame {
 		this.id = id;
 	}
 
-	public OS getOs() {
-		return os;
+	public Integer getOs() {
+		return os_id;
 	}
 
-	public void setOs(OS os) {
-		this.os = os;
+	public void setOs(Integer os_id) {
+		this.os_id = os_id;
 	}
 
-	public Exame getExame() {
-		return exame;
+	public Integer getExame() {
+		return exame_id;
 	}
 
-	public void setExame(Exame exame) {
-		this.exame = exame;
+	public void setExame(Integer exame_id) {
+		this.exame_id = exame_id;
 	}
 	
 	

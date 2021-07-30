@@ -7,8 +7,8 @@ public class OsExameDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
-	private Integer exame;
-	private Integer os;
+	private Integer exame_id;
+	private Integer os_id;
 	
 	
 	public OsExameDTO() {
@@ -19,8 +19,8 @@ public class OsExameDTO implements Serializable{
 		super();
 		
 		this.id = obj.getId();
-		this.exame = obj.getExame().getId();
-		this.os = obj.getOs().getId();
+		this.exame_id = obj.getExame();
+		this.os_id = obj.getOs();
 	}
 
 	public Integer getId() {
@@ -32,19 +32,19 @@ public class OsExameDTO implements Serializable{
 	}
 
 	public Integer getExame() {
-		return exame;
+		return exame_id;
 	}
 
-	public void setExame(Integer exame) {
-		this.exame = exame;
+	public void setExame(Integer exame_id) {
+		this.exame_id = exame_id;
 	}
 
 	public Integer getOs() {
-		return os;
+		return os_id;
 	}
 
-	public void setOs(Integer os) {
-		this.os = os;
+	public void setOs(Integer os_id) {
+		this.os_id = os_id;
 	}
 	
 	

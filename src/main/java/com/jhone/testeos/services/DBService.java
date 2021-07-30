@@ -59,11 +59,11 @@ public class DBService {
 		Exame e3 = new Exame(null, "Exame 3", 155.00);
 		Exame e4 = new Exame(null, "Exame 4", 199.00);
 		
-		OsExame ose1 = new OsExame(null, os1, e1); 
-		OsExame ose2 = new OsExame(null, os1, e2);
-		OsExame ose3 = new OsExame(null, os1, e3);
-		OsExame ose4 = new OsExame(null, os2, e3);
-		OsExame ose5 = new OsExame(null, os2, e4);
+		OsExame ose1 = new OsExame(null, 1, 2); 
+		OsExame ose2 = new OsExame(null, 1, 1);
+		OsExame ose3 = new OsExame(null, 2, 2);
+		OsExame ose4 = new OsExame(null, 1, 3);
+		OsExame ose5 = new OsExame(null, 2, 1);
 		
 		postocoletarepository.saveAll(Arrays.asList(p1,p2));
 		medicorepository.saveAll(Arrays.asList(m1,m2));

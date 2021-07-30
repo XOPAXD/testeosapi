@@ -30,7 +30,6 @@ import com.jhone.testeos.repositories.PostoColetaRepository;
 
 @Service
 public class OsService {
-	
 	@Autowired
 	private OsRepository osrepository;
 	
@@ -74,24 +73,42 @@ public class OsService {
 	}
 	
 	public OsExame createosexame(OsExameDTO obj) {
-		return fromOsExameDto(obj);
+		
+		return fromOsExameDto(obj,0);
+	}
+	
+	public OsExame updosexame(OsExameDTO obj) {
+		
+		osexamerepository.deletebyosid(obj.getOs());
+		
+		return fromOsExameDto(obj,obj.getOs());
+	}
+	
+	public void dltosexame(OsExameDTO obj) {
+		
+		osexamerepository.deletebyosid(obj.getOs());
+		
 	}
 	
 	public void delete(Integer id) {
 		 osrepository.deleteById(id);
 	}
 	
-	private OsExame fromOsExameDto(OsExameDTO obj) {
-		OsExame newObj = new OsExame();
-		newObj.setId(obj.getId());
+	private OsExame fromOsExameDto(OsExameDTO obj,Integer os_id) {
 		
-		Exame  ex = getExameById(obj.getExame());
-		OS     os = getOsById (obj.getOs());
-		
-		newObj.setExame(ex);
-		newObj.setOs(os);
-		
-		return osexamerepository.save(newObj);
+			System.out.println("exame.:"+obj.getExame());
+			OsExame newObj = new OsExame();
+			newObj.setId(obj.getId());
+			newObj.setExame(obj.getExame());
+			
+			if(os_id > 0) {
+				newObj.setOs(os_id);
+			}else {
+				OS os  = FindOsLastId();
+				newObj.setOs(os.getId());
+				System.out.println("os.:"+os.getId());
+			}
+			return osexamerepository.save(newObj);
 	}
 	
 	private OS fromDTO(OSDTO obj) {
@@ -125,6 +142,11 @@ public class OsService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Exame.class.getName()));
     }
     
+    public OS FindOsLastId() {
+    	
+    	return   osrepository.findTopByOrderByIdDesc();
+		
+    }
     
     public OS getOsById(Integer id) {
     	
